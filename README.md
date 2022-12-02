@@ -1,5 +1,5 @@
 
-# Image Compressor Library
+# Image Compressor
 
 [![](https://jitpack.io/v/xswapsx/ImageCompressorLibrary.svg)](https://jitpack.io/#xswapsx/ImageCompressorLibrary)
 
