@@ -12,7 +12,7 @@ allprojects {
 		}
 	}
   
-Step 2. Add it in your module build.gradle:
+Step 2. Add it in your module's build.gradle:
 
 dependencies {
 
