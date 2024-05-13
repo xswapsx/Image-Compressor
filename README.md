@@ -3,14 +3,13 @@
 
 [![](https://jitpack.io/v/xswapsx/ImageCompressorLibrary.svg)](https://jitpack.io/#xswapsx/ImageCompressorLibrary)
 
-Compressor is a lightweight and powerful android image compression library. Compressor will allow you to compress large photos into smaller sized photos with very less or negligible loss in quality of the image.
+Compressor is a lightweight and powerful android image compression library. Compressor will allow you to compress large photos into smaller-sized photos with very little or negligible loss in the quality of the image.
 # Gradle
-Step 1. Add it in your root build.gradle at the end of repositories:
+Step 1. Add it to your root build.gradle at the end of repositories:
 
-allprojects {
-		
-    repositories {
-			
+    allprojects{
+    	repositories {
+
               ...
 			maven { url 'https://jitpack.io' }
 		}
