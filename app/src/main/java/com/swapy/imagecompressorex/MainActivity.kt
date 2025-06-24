@@ -22,6 +22,7 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import com.google.common.util.concurrent.ListenableFuture
 import com.swapy.imagecompressor.ImageCompressor
+import com.swapy.imagecompressorex.Util.addWatermarkToFile
 import com.swapy.imagecompressorex.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -136,12 +137,18 @@ class MainActivity : AppCompatActivity() {
 
                                 // Save flipped bitmap back to file
                                 FileOutputStream(file).use { out ->
-                                    finalBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out)
+                                    finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out)
                                 }
 
                                 // Now compress using your compressor
                                 val compressedPath = ImageCompressor.compressImage(
                                     file.absolutePath
+                                )
+
+                                addWatermarkToFile(
+                                    sourceFilePath = compressedPath,
+                                    21.14445365624655,
+                                    79.05897499285621
                                 )
 
                                 withContext(Dispatchers.Main) {
@@ -153,11 +160,10 @@ class MainActivity : AppCompatActivity() {
                                     Timber.tag(TAG).i("Compressed image path: $compressedPath")
                                 }
                             } catch (e: Exception) {
-                                Timber.e(e, "Failed to process and compress image")
+                                Timber.e(e.message)
                             }
                         }
                     }
-
 
                     override fun onError(exception: ImageCaptureException) {
                         Toast.makeText(

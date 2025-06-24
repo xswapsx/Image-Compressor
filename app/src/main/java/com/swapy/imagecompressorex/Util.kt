@@ -96,6 +96,7 @@ object Util {
             Corner.BOTTOM_LEFT -> {
                 padding
             }
+
             Corner.TOP_RIGHT,
             Corner.BOTTOM_RIGHT -> {
                 width - padding
@@ -106,6 +107,7 @@ object Util {
             Corner.BOTTOM_RIGHT -> {
                 height - padding
             }
+
             Corner.TOP_LEFT,
             Corner.TOP_RIGHT -> {
                 val bounds = Rect()
