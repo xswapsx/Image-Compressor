@@ -122,47 +122,12 @@ class MainActivity : AppCompatActivity() {
                 object : ImageCapture.OnImageSavedCallback {
                     override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
                         Timber.tag(TAG).i("The image has been saved in ${file.absolutePath}")
-
-                        lifecycleScope.launch(Dispatchers.IO) {
-                            try {
-                                // Decode bitmap from saved file
-                                val originalBitmap = BitmapFactory.decodeFile(file.absolutePath)
-
-                                // Flip if using front camera
-                                val finalBitmap = if (isFrontCamera) {
-                                    flipBitmapHorizontally(originalBitmap)
-                                } else {
-                                    originalBitmap
-                                }
-
-                                // Save flipped bitmap back to file
-                                FileOutputStream(file).use { out ->
-                                    finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out)
-                                }
-
-                                // Now compress using your compressor
-                                val compressedPath = ImageCompressor.compressImage(
-                                    file.absolutePath
-                                )
-
-                                addWatermarkToFile(
-                                    sourceFilePath = compressedPath,
-                                    21.14445365624655,
-                                    79.05897499285621
-                                )
-
-                                withContext(Dispatchers.Main) {
-                                    Toast.makeText(
-                                        this@MainActivity,
-                                        "Compressed image saved at $compressedPath",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                    Timber.tag(TAG).i("Compressed image path: $compressedPath")
-                                }
-                            } catch (e: Exception) {
-                                Timber.e(e.message)
-                            }
-                        }
+                        val compressedPath = ImageCompressor.compressImage(file.absolutePath)
+                        addWatermarkToFile(
+                            sourceFilePath = compressedPath,
+                            21.14445365624655,
+                            79.05897499285621
+                        )
                     }
 
                     override fun onError(exception: ImageCaptureException) {
