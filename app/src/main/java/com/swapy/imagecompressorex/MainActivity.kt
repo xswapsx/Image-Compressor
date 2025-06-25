@@ -2,9 +2,7 @@ package com.swapy.imagecompressorex
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.Color
-import android.graphics.Matrix
 import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
@@ -144,13 +142,6 @@ class MainActivity : AppCompatActivity() {
                 binding.root.foreground = null
             }, 50)
         }, 100)
-    }
-
-    private fun flipBitmapHorizontally(bitmap: Bitmap): Bitmap {
-        val matrix = Matrix().apply {
-            preScale(-1f, 1f)
-        }
-        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
     }
 
     override fun onDestroy() {
